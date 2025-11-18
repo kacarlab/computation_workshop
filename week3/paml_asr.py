@@ -9,7 +9,7 @@ from optparse import OptionParser, OptionGroup
 VERSION = "asr v1.0"
 
 # set default executables and model #
-PAMLBS = "/mnt/researchdrive/Kaustubh/Rubisco_Project/Sequence_Alignment/paml4.9j" #change the path
+PAMLBS = "./" #change the path
 CODEML = PAMLBS + "/bin/codeml"
 BASEML = PAMLBS + "/bin/baseml"
 SUBMOD_NAME = PAMLBS + "/dat/lg.dat"

@@ -15,3 +15,5 @@ We will follow this [Google Colab tutorial](https://colab.research.google.com/dr
 [Slides](https://github.com/kacarlab/computation_workshop/blob/c5f1c632d098de245deabbc11f540c90d08d445c/week3/Computational_Workshop3_Rooting_ASR.pdf)
 
 ### **Week 4 - Intro to R commands and phylogeny visualization**
+
+We will follow this [Google Colab tutorial](https://colab.research.google.com/drive/1tp7Z42hi5GXR493vpqrSGAPAce1MSrY3?usp=sharing)

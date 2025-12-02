@@ -1,0 +1,524 @@
+---
+title: "Computation Workshop 5 - Quick R"
+output: html_notebook
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+This is a notebook containing:
+
+1.  Basic R commands for beginners
+2.  Phylogeny visualization
+
+The notebook displays both the commands and their results automatically.
+For best practice, feel free to modify the examples and experiment with
+the code throughout the tutorial.
+
+# Basic Commands
+
+### What is R & RStudio?
+
+R is a free programming software generally used for data analysis and
+creating graphics.
+
+RStudio is a user-friendly interface for R.
+
+On RStudio you see multiple panels:
+
+-   **Console Pane:** any running command, errors, outputs can be seen
+    here
+
+-   **Environment/Workspace/History Pane:** the defined variables are
+    stored here. You can check their dimensions, length, size etc. You
+    can also click on matrix or data frame to display them on source
+    pane in more detail.
+
+-   **File/Plot/Package/Help/Viewer Pane:**
+
+    -   Files tab shows the structure of current working folder
+
+    -   Plot tab preview the graphs; Packages to check what packages
+        were installed and loaded
+
+    -   Help to search any function and check how it is used (generally
+        there are examples at the end of each help pages)
+
+-   **Source Pane:** (you will see if you click on hidden panel or open
+    "New R Script"); you can write your commands here in script,
+    markdown or notebook form.
+
+    <div>
+
+    > Tip: It is better to write your commands on R script file on
+    > source pane rather then just running them on the console. With
+    > script every action will be stored in a file for further usage or
+    > sharing. It is important to save the script file regularly when
+    > changes are made.
+
+    </div>
+
+### R Basics
+
+R can do any mathematical calculations and print any text in double
+quotes.
+
+We sometimes use comments to explain what R code does. Some examples
+below:
+
+```{r}
+
+1020 * 1093
+108420 / 2
+240 + 1234
+1197- 129
+
+"Hello World" # This is a comment, R won't run this
+
+# This is also a comment
+
+```
+
+It gives an error when numbers are placed in quotation marks, because
+they are then treated as characters rather than numeric values.
+
+```{r}
+
+"1020"*"1093"
+
+```
+
+It also gives an error when non-variable words are written without
+quotation marks.
+
+```{r}
+
+Hello
+```
+
+### Variables
+
+Variables stores the data values. If you assign a value to any
+word/letter, it becomes a variable.
+
+```{r}
+name
+```
+
+Opps, error. Let's try again.
+
+```{r}
+name = "Evrim" 
+
+name
+
+print(name)
+```
+
+> Tip: The more descriptive the variable, the better. Instead of using
+> letters (x=, y= etc.) , it is better to use words (student_name,
+> student_age etc.). Names should start with letter but can be a
+> combination of letters and digits. Variable names are case sensitive
+> (i.e., name, Name, NAME are different variables). The names of R
+> functions cannot be used as variable name.
+
+### Data Types
+
+We can check the data type using class() function
+
+```{r}
+x=1.5
+class(x)
+
+x="workshop"
+class(x)
+
+x=TRUE
+class(x)
+```
+
+### If / Else if / Else statements
+
+Logical values are important to define conditions (i.e., if - else
+statements). A condition is evaluated whether it is true or false, "IF"
+it is true, the next block of code will be executed.
+
+```{r}
+
+a=40
+b=100
+
+if(b>a){
+  print("b is greater than a")
+} else if (a == b) {
+  print("a and b are equal")
+} else {
+  print("a is greater than b")
+}
+```
+
+We can combine multiple conditions with AND and OR logical operators.
+
+```{r}
+x=50
+y=20
+z=-40
+
+if(x>y & z<y){
+  print("TRUE")
+}
+
+if(x>y | z>y){
+  print("TRUE")
+}
+```
+
+### For Loop and Functions
+
+We can iterate the same action for a sequence of elements using for
+loop.
+
+```{r}
+
+fruits = list("apple", "banana", "strawberry")
+
+for (item in fruits){
+  print(item)
+}
+```
+
+We can define our own function with a block of code that can be used
+with a given parameter (argument).
+
+```{r}
+
+some_math=function(argument1, argument2){
+  result=((argument1-argument2)/(argument1+argument2))*100
+  return(result)
+}
+
+some_math(20,10)
+some_math(100,12103)
+```
+
+### Data Structures
+
+R has different data structures to handle and store the values. These
+are vectors, lists, matrices, arrays and data frames.
+
+-   **Vector\*:** list of items of the same type
+
+-   **List:** can combine different types of data
+
+-   **Matrix\*:** 2D data structure where all elements are the same time
+
+-   **Array:** similar to matrix but have more dimensions, stores
+    element of the same type in multiple dimensions
+
+-   **Data frame\*:** similar to matrix but it can hold different types
+    of data in different columns
+
+\* - mostly used data structures
+
+```{r}
+
+# vector of strings
+
+colors=c("red","blue","green")
+colors
+
+# vector of numbers
+some_numbers=c(11,23,34,45,56)
+
+```
+
+```{r}
+1:5
+
+seq(1:5)
+
+seq(from=2,to=10,by=2)
+
+rep(1,5)
+
+rep(2,5)
+
+c(rep(1,5), rep(2,5))
+
+rep(c(1,2))
+
+rep(c(1,2), each=5)
+
+```
+
+```{r}
+# each element has a position in the vector = index
+some_numbers[1] 
+some_numbers[3]
+some_numbers[-2] # removed the second element
+some_numbers[2:5] # prints the items between second and the fifth elements
+```
+
+```{r}
+# list of different items
+alist=list(c("apple","banana"),"color",c(1,2))
+alist
+
+```
+
+```{r}
+alist[[1]]
+alist[[2]]
+alist[[3]][1]
+
+```
+
+```{r}
+mat=matrix(c(1,2,3,4,5,6), nrow=3, ncol=2)
+mat
+
+mat=matrix(c(1,2,3,4,5,6), nrow=3, ncol=2, byrow=TRUE)
+mat
+
+```
+
+```{r}
+# dimensions of the matrix (row numbers, column numbers)
+dim(mat)
+# number of rows
+nrow(mat)
+# number of columns
+ncol(mat)
+
+# the item in first row, second column
+mat[1,2]
+
+# all items in the first column
+mat[,1]
+
+# all items in the third row
+mat[3,]
+```
+
+```{r}
+# An array with more than one dimension
+multiarray <- array(c(1:24), dim = c(4, 3, 2))
+multiarray
+
+multiarray[2,3,2]
+```
+
+```{r}
+data=data.frame(
+  Training=c("strength","stamina","other"),
+  Pulse=c(c(100,50,120)),
+  Duration=c(60,30,45)
+)
+data
+
+dim(data)
+data[1,2]
+data$Training
+
+
+
+```
+
+### Install Packages
+
+```{r}
+install.packages("ggtree")
+install.packages("seqinr")
+
+```
+
+# Introduction to generating phylogenetic Trees in R
+
+```{r}
+options(
+  repr.plot.width  = 10,   # increase this for wider plots
+  repr.plot.height = 8,    # increase this for taller plots
+  repr.plot.res    = 150   # bump resolution (DPI); 150–200 is usually good
+)
+```
+
+### Setup: Installing and loading packages
+
+```{r}
+
+# Install BiocManager if needed
+if (!requireNamespace("BiocManager", quietly = TRUE))
+  install.packages("BiocManager")
+
+# CRAN packages
+install.packages(c(
+  "ggplot2", "tidyr", "dplyr", "ape",
+  "ggnewscale", "scales"
+))
+
+# Bioconductor: ggtree
+BiocManager::install("ggtree")
+
+# Load libraries
+library(ggtree)
+library(ape)
+library(ggnewscale)
+library(dplyr)
+library(tidyr)
+library(scales)
+library(ggplot2)
+
+```
+
+### Reading the Phylogenetic Tree
+
+```{r}
+phy <- read.tree(file = "/Users/fer/Desktop/week4/Rca_phy.treefile")
+
+phy
+```
+
+### Read the metadata table as a dataframe
+
+```{r}
+df = data.frame(read.delim("/Users/fer/Desktop/week4/Rca_info.tsv"))
+
+head(df)
+```
+
+```{r}
+annot_df <- df %>% select(MSA_id, slen, major_group, domain, kingdom, phylum) %>% rename(label = MSA_id)
+
+head(annot_df)
+```
+
+### Plotting the Phylogenetic Tree
+
+```{r}
+phy_rect <- ggtree(phy)
+
+phy_rect
+```
+
+### Adding other tip labels and scale to the phylogeny
+
+```{r}
+phy_rect_tips <- ggtree(phy) +
+  geom_treescale() +    ## Adds the scale
+  geom_tiplab(size = 2) ## Adds the tip labels
+
+phy_rect_tips
+```
+
+### Plot it in a circular layout
+
+```{r}
+phy_circ <- ggtree(phy, layout = "circular")
+
+phy_circ
+```
+
+### Associating the metadata with the phylogenetic tree
+
+```{r}
+p <- ggtree(phy) %<+% annot_df + geom_treescale()
+
+p
+```
+
+### Coloring the tips by categorical data
+
+```{r}
+p_domain <- p + geom_tippoint(aes(color=domain), size = 3)
+
+p_domain
+```
+
+```{r}
+p_kingdom <- p + geom_tippoint(aes(color=kingdom), size = 3)
+
+p_kingdom
+```
+
+```{r}
+p_circ <- ggtree(phy, layout = "circular") %<+% annot_df + geom_treescale()
+
+p_kingdom_circ <- p_circ + geom_tippoint(aes(color=kingdom), size = 3)
+
+p_kingdom_circ
+```
+
+### Mapping continuous data with the phylogeny
+
+-   Coloring the tips based on sequence length
+
+```{r}
+p_slen_color <- p +
+  geom_tippoint(aes(color = slen), size = 3) +
+  scale_color_gradient(low = "lightblue", high = "darkblue") +
+  labs(color = "Sequence length") +
+  theme(legend.position = "right")
+
+p_slen_color
+```
+
+-   Tip sizes by sequence length
+
+```{r}
+p_slen_size <- p +
+  geom_tippoint(aes(size = slen), alpha = 0.7) +
+  scale_size_continuous(range = c(1, 5)) +
+  labs(size = "Sequence length") +
+  theme(legend.position = "right")
+
+p_slen_size
+```
+
+### Adding a heatmap with our phylogeny
+
+```{r}
+## Creating a minimal df only with the slen information
+
+heat_df <- annot_df %>%
+  select(label, slen) %>%
+  distinct(label, .keep_all = TRUE) # Ensure unique labels before setting as row names
+
+rownames(heat_df) <- heat_df$label
+# row.names(heat_df) <- heat_df$label
+heat_df$label <- NULL
+
+head(heat_df)
+```
+
+```{r}
+p_base <- ggtree(phy) %<+% annot_df + geom_treescale()
+
+# Add heatmap of sequence length
+p_heat <- gheatmap(p_base, heat_df,
+                   offset = 0.05, width = 0.1,
+                   colnames = TRUE) +
+  scale_fill_gradient(low = "lightyellow", high = "red",
+                      name = "Seq length")
+
+p_heat
+```
+
+### Combining the Heatmap and the colored tips
+
+```{r}
+p_kingdom <- p + geom_tippoint(aes(color=kingdom), size = 3)
+
+p_kingdom_heatmap <- gheatmap(p_kingdom, heat_df,
+                   offset = 0.05, width = 0.1,
+                   colnames = TRUE) +
+  scale_fill_gradient(low = "lightyellow", high = "red",
+                      name = "Seq length")
+
+p_kingdom_heatmap
+```
+
+### Saving the plots
+
+```{r}
+ggsave("/Users/fer/Desktop/week4/phylogenetic_tree_with_kingdom_and_heatmap.png", plot = p_heat, width = 10, height = 8, dpi = 300)
+```
